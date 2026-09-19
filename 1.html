@@ -1,0 +1,748 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our 1 Year Anniversary ❤️</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    overflow: hidden;
+}
+
+/* =========================
+   COMMON SCREEN
+========================= */
+
+.screen {
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.screen.active {
+    display: flex;
+}
+
+/* =========================
+   SCREEN 1 - BLACK
+========================= */
+
+#screen1 {
+    background: #000;
+    color: white;
+}
+
+#screen1 h1 {
+    font-size: 35px;
+    letter-spacing: 5px;
+    animation: fadeIn 2s ease;
+}
+
+/* =========================
+   SCREEN 2 - HELLO
+========================= */
+
+#screen2 {
+    background: #f7c6d0;
+}
+
+#screen2 h1 {
+    font-size: 70px;
+    color: white;
+    letter-spacing: 8px;
+    animation: hello 2s ease;
+}
+
+/* =========================
+   SCREEN 3 - ROSES
+========================= */
+
+#screen3 {
+    background: linear-gradient(135deg, #ffe4e8, #f8b6c1);
+    flex-direction: column;
+}
+
+.roses {
+    font-size: 70px;
+    animation: roseFloat 3s infinite ease-in-out;
+}
+
+#screen3 h1 {
+    margin-top: 20px;
+    color: #9d1835;
+    font-size: 42px;
+}
+
+#screen3 p {
+    margin-top: 15px;
+    color: #6b1c2b;
+    font-size: 20px;
+}
+
+/* =========================
+   SCREEN 4 - GIFT GAME
+========================= */
+
+#screen4 {
+    background: #fff0f3;
+    flex-direction: column;
+}
+
+#screen4 h1 {
+    color: #b51f42;
+    margin-bottom: 10px;
+    font-size: 35px;
+}
+
+#screen4 p {
+    color: #7c3445;
+    margin-bottom: 25px;
+}
+
+.gifts {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 800px;
+}
+
+.gift {
+    width: 130px;
+    height: 120px;
+    background: #e63956;
+    border-radius: 15px;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    transition: 0.3s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 55px;
+}
+
+.gift:hover {
+    transform: translateY(-10px) rotate(-3deg);
+}
+
+.gift::before {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 100%;
+    background: #ffd1dc;
+}
+
+.gift::after {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 20px;
+    background: #ffd1dc;
+}
+
+.message {
+    position: absolute;
+    inset: 0;
+    background: white;
+    border-radius: 15px;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    color: #b51f42;
+    font-size: 16px;
+    z-index: 2;
+}
+
+.gift.open .message {
+    display: flex;
+}
+
+/* =========================
+   BLACK TRANSITION
+========================= */
+
+#screen5 {
+    background: black;
+    color: white;
+}
+
+#screen5 h1 {
+    font-size: 25px;
+    animation: fadeIn 2s infinite alternate;
+}
+
+/* =========================
+   FINAL GIFT
+========================= */
+
+#screen6 {
+    background: linear-gradient(135deg, #ffdce4, #fff4f6);
+    flex-direction: column;
+}
+
+.finalGift {
+    width: 230px;
+    height: 190px;
+    background: #d92f50;
+    position: relative;
+    border-radius: 12px;
+    cursor: pointer;
+    box-shadow: 0 15px 40px rgba(160, 20, 50, 0.3);
+    transition: 0.5s;
+}
+
+.finalGift:hover {
+    transform: scale(1.05);
+}
+
+.finalGift .verticalRibbon {
+    position: absolute;
+    width: 35px;
+    height: 100%;
+    background: #ffb6c5;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.finalGift .horizontalRibbon {
+    position: absolute;
+    width: 100%;
+    height: 35px;
+    background: #ffb6c5;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.bow {
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 75px;
+}
+
+.openText {
+    margin-top: 50px;
+    color: #a51e3d;
+    font-size: 22px;
+    animation: pulse 1.5s infinite;
+}
+
+/* =========================
+   LOVE LETTER
+========================= */
+
+#letter {
+    display: none;
+    position: absolute;
+    width: min(90%, 700px);
+    max-height: 80vh;
+    overflow-y: auto;
+    background: #fff;
+    padding: 45px 35px;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+    color: #6c1d31;
+    z-index: 10;
+    animation: letterOpen 1s ease;
+}
+
+#letter h1 {
+    color: #c51f43;
+    margin-bottom: 25px;
+    font-size: 38px;
+}
+
+#letter p {
+    font-size: 21px;
+    line-height: 1.8;
+}
+
+.close {
+    margin-top: 25px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 25px;
+    background: #d92f50;
+    color: white;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+/* =========================
+   FLOATING HEARTS
+========================= */
+
+.heart {
+    position: absolute;
+    color: #e63956;
+    font-size: 25px;
+    animation: floatHeart 6s linear infinite;
+    bottom: -50px;
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes hello {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes roseFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-15px);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes letterOpen {
+    from {
+        opacity: 0;
+        transform: scale(0.5) rotate(-5deg);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) rotate(0);
+    }
+}
+
+@keyframes floatHeart {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+@media(max-width:600px) {
+
+    #screen2 h1 {
+        font-size: 50px;
+    }
+
+    #screen3 h1 {
+        font-size: 30px;
+    }
+
+    .gift {
+        width: 100px;
+        height: 95px;
+        font-size: 40px;
+    }
+
+    #letter p {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     SCREEN 1
+========================= -->
+
+<section class="screen active" id="screen1">
+    <h1>Something Special Is Waiting...</h1>
+</section>
+
+
+<!-- =========================
+     SCREEN 2
+========================= -->
+
+<section class="screen" id="screen2">
+    <h1>HELLO ❤️</h1>
+</section>
+
+
+<!-- =========================
+     SCREEN 3
+========================= -->
+
+<section class="screen" id="screen3">
+
+    <div class="roses">
+        🌹 🌹 🌹 🌹 🌹
+    </div>
+
+    <h1>🎁 A Gift For My Love 🎁</h1>
+
+    <p>
+        One year of love, laughter, memories & endless happiness ❤️
+    </p>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 4
+     GIFT GAME
+========================= -->
+
+<section class="screen" id="screen4">
+
+    <h1>🎁 Pick A Gift 🎁</h1>
+
+    <p>Open the little gifts and discover what's inside ❤️</p>
+
+    <div class="gifts">
+
+        <div class="gift" onclick="openGift(this)">
+            🎁
+            <div class="message">
+                ❤️ You are my favorite person.
+            </div>
+        </div>
+
+        <div class="gift" onclick="openGift(this)">
+            🎁
+            <div class="message">
+                🥰 Every moment with you is special.
+            </div>
+        </div>
+
+        <div class="gift" onclick="openGift(this)">
+            🎁
+            <div class="message">
+                💕 You make my world beautiful.
+            </div>
+        </div>
+
+        <div class="gift" onclick="openGift(this)">
+            🎁
+            <div class="message">
+                😘 One year down, forever to go!
+            </div>
+        </div>
+
+        <div class="gift" onclick="openGift(this)">
+            🎁
+            <div class="message">
+                💖 Thank you for always being there.
+            </div>
+        </div>
+
+        <div class="gift" onclick="openGift(this)">
+            🎁
+            <div class="message">
+                🌹 You are my beautiful memory.
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     SCREEN 5
+========================= -->
+
+<section class="screen" id="screen5">
+    <h1>Wait... One Last Surprise ❤️</h1>
+</section>
+
+
+<!-- =========================
+     SCREEN 6
+========================= -->
+
+<section class="screen" id="screen6">
+
+    <div class="finalGift" onclick="openFinalGift()">
+
+        <div class="bow">🎀</div>
+
+        <div class="verticalRibbon"></div>
+        <div class="horizontalRibbon"></div>
+
+    </div>
+
+    <div class="openText">
+        💝 Click the gift to open 💝
+    </div>
+
+
+    <!-- LOVE LETTER -->
+
+    <div id="letter">
+
+        <h1>❤️ I LOVE YOU ❤️</h1>
+
+        <p>
+            I LOVE YOU ❤️
+            <br><br>
+
+            Thank you for believing in me and staying with me.
+            <br><br>
+
+            Thank you for coming into my life and making it
+            more beautiful than I ever imagined.
+            <br><br>
+
+            Thank you for every smile, every conversation,
+            every memory and every little moment we've shared.
+            <br><br>
+
+            One year with you has been filled with
+            so many beautiful memories.
+            <br><br>
+
+            I hope we create thousands of more memories together.
+            <br><br>
+
+            No matter what happens,
+            I will always cherish the beautiful journey
+            we started together.
+            <br><br>
+
+            🌹 HAPPY ONE YEAR ANNIVERSARY MY LOVE 🌹
+            <br><br>
+
+            ❤️ Forever & Always ❤️
+        </p>
+
+        <button class="close" onclick="closeLetter()">
+            Close ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<script>
+
+/* =========================
+   SCREEN CHANGING
+========================= */
+
+function showScreen(number) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    document.getElementById("screen" + number)
+        .classList.add("active");
+}
+
+
+/* =========================
+   AUTOMATIC STORY
+========================= */
+
+// Black screen for 2 seconds
+setTimeout(() => {
+    showScreen(2);
+}, 2000);
+
+
+// Hello for 2 seconds
+setTimeout(() => {
+    showScreen(3);
+}, 4000);
+
+
+// Roses screen for 5 seconds
+setTimeout(() => {
+    showScreen(4);
+}, 9000);
+
+
+/* =========================
+   GIFT GAME
+========================= */
+
+let openedGifts = 0;
+
+function openGift(gift) {
+
+    if (gift.classList.contains("open")) {
+        return;
+    }
+
+    gift.classList.add("open");
+
+    openedGifts++;
+
+    createHeart();
+
+    // After opening all gifts
+    if (openedGifts === 6) {
+
+        setTimeout(() => {
+
+            showScreen(5);
+
+            // Black transition
+            setTimeout(() => {
+                showScreen(6);
+            }, 3000);
+
+        }, 1500);
+
+    }
+}
+
+
+/* =========================
+   FINAL GIFT
+========================= */
+
+function openFinalGift() {
+
+    document.querySelector(".finalGift").style.display = "none";
+
+    document.querySelector(".openText").style.display = "none";
+
+    document.getElementById("letter").style.display = "block";
+
+    createConfetti();
+}
+
+
+/* =========================
+   CLOSE LETTER
+========================= */
+
+function closeLetter() {
+
+    document.getElementById("letter").style.display = "none";
+
+    document.querySelector(".finalGift").style.display = "block";
+
+    document.querySelector(".openText").style.display = "block";
+}
+
+
+/* =========================
+   FLOATING HEART
+========================= */
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.className = "heart";
+
+    heart.innerHTML = ["❤️","💕","💖","💗","💘"][Math.floor(Math.random() * 5)];
+
+    heart.style.left = Math.random() * 100 + "vw";
+
+    heart.style.animationDuration =
+        (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}
+
+
+/* =========================
+   CONFETTI
+========================= */
+
+function createConfetti() {
+
+    for (let i = 0; i < 80; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.innerHTML =
+            ["❤️","💕","💖","🌹","✨","💗"][Math.floor(Math.random()*6)];
+
+        heart.style.position = "fixed";
+
+        heart.style.left = Math.random() * 100 + "vw";
+
+        heart.style.top = "-30px";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 25) + "px";
+
+        heart.style.zIndex = "20";
+
+        heart.style.animation =
+            "floatHeart " +
+            (3 + Math.random() * 4) +
+            "s linear forwards";
+
+        document.body.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
+}
+
+
+/* =========================
+   RANDOM HEARTS
+========================= */
+
+setInterval(() => {
+
+    if (document.getElementById("screen6").classList.contains("active")) {
+        createHeart();
+    }
+
+}, 700);
+
+</script>
+
+</body>
+</html>
+```
